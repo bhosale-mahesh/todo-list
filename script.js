@@ -31,3 +31,8 @@ todoList.addEventListener('click', (e) => {
     e.target.parentElement.remove();
   }
 });
+inputTask.addEventListener('keypress', (ev) => {
+  if (ev.key === 'Enter') {
+    addTodo();
+  }
+})

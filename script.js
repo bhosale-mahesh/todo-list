@@ -19,7 +19,7 @@ function addTodo() {
 function getSingleTodoHtml(task) {
   return `
     <input type='checkbox' class='todo-item-checkbox'>
-      <span>${task}</span>
+    <span class='todo-task-text'>${task}</span>
     <button class='todo-edit-btn'>Edit</button>
     <button class='todo-delete-btn'>X</button>
   `;
@@ -44,11 +44,14 @@ inputTask.addEventListener("keypress", (ev) => {
 
 // Modify single todo
 todoList.addEventListener("click", (e) => {
-  if (e.target.className === "todo-item-checkbox") {
-    e.target.closest("li").classList.toggle("checked");
-  }
   if (e.target.className === "todo-edit-btn") {
-    let updatedTask = prompt("Enter task: ");
+    let updatedTask;
+    while (!updatedTask) {
+      updatedTask = prompt("Enter task: ");
+      if (!updatedTask) {
+        alert("Please enter task to do");
+      }
+    }
     e.target.previousElementSibling.textContent = updatedTask;
   }
   if (e.target.className === "todo-delete-btn") {
